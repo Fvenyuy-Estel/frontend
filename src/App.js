@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+// import { Routes, Route, Navigate, } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Categories from "./pages/categories";
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './pages/Home';
+import Form from './components/Form';
+import Login from "./pages/login";
+import Signup from "./pages/signup";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+	const [category, setCategory] = useState([]);
+
+	const getCategory = async () => {
+		try {
+			const url = 'https://simplor.herokuapp.com/api/category/categories';
+			const data = await axios.get(url)
+			console.log(data)
+			setCategory(data.data)
+		} catch (err) {
+			console.log(err);
+		}
+	};
+	useEffect(() => {
+		getCategory();
+	}, []);
+	console.log(category)
+	return (
+		
+        <BrowserRouter>
+            <Routes>
+
+                 <Route path='/' exact element={<Home category={category}/>}/>
+                 <Route path='/categories' exact element={<Categories category={category}/>}/>
+                 <Route path='/form' exact element={<Form/>}/>
+                 <Route path='/login' exact element={<Login/>}/>
+                 <Route path='/signup' exact element={<Signup/>}/>
+                 {/* <Route path='/signin' exact element={<Signin/>}/> */}
+                 {/* <Route path='/*' exact element={<NotFoundPage/>}/> */}
+            </Routes>
+        </BrowserRouter>
+	);
 }
 
 export default App;
