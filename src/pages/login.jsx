@@ -10,12 +10,15 @@ const Login = () => {
   const navigate = useNavigate()
   const googlebuttonref = useRef();
   const [user, setuser] = useState(false);
+
   const onGoogleSignIn = (user) => {
+    localStorage.removeItem('user')
     let userCred = user.credential;
     let payload = jwt_deocde(userCred);
     console.log(payload);
     setuser(payload);
-    // localStorage.setItem('gUser',JSON.stringify(user))
+    localStorage.setItem('user',JSON.stringify(user))
+    navigate('/')
   };
   useScript("https://accounts.google.com/gsi/client", () => {
     window.google.accounts.id.initialize({
@@ -41,12 +44,11 @@ const Login = () => {
   }
 
   const handleSubmit = () => {
-    axios.post("https://simplor.herokuapp.com/api/user/login", nUser, {
-
-    }
+    localStorage.removeItem('user')
+    axios.post("https://simplor.herokuapp.com/api/user/login", nUser
     ).then(res => {
       console.log(res)
-      // localStorage.setItem('user', JSON.stringify(res.data))
+      localStorage.setItem('user', JSON.stringify(res.data))
       navigate('/', { state: res.data })
     }).catch(err => {
       console.log(err)
