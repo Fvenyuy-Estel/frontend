@@ -1,6 +1,7 @@
 import React, { useState} from 'react'
 import { useLocation } from 'react-router-dom'
 import axios from 'axios'
+import Header from './Header'
 
 
 function Form() {
@@ -74,23 +75,23 @@ function Form() {
 
     return (
         <>
-            <div class="w-full max-w-lg mx-auto mt-4">
-                <h1 className='text-center font-extrabold'>Create Category Page</h1>
-                <form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <Header name = "Create Category"/>
+            <div class="w-6/12 mx-auto mt-4">
+                <form class="bg-white shadow-xl rounded px-8 pt-6 pb-8 mb-4">
                     <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                        <label class="block text-gray-700 text-xl font-bold mb-2" for="username">
                             Category Name
                         </label>
-                        <input class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name='name' value={cat.name} type="text" placeholder="Username" onChange={handleChange}/>
+                        <input class="h-4/12 shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" name='name' value={cat.name} type="text" placeholder="Username" onChange={handleChange}/>
                     </div>
                     <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        <label class="block text-gray-700 text-xl font-bold mb-2" for="password">
                             Enter the Decription
                         </label>
                         <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="text" name='description' value={cat.description} onChange={handleChange}/>
                     </div>
                     <div class="mb-6">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                        <label class="block text-gray-700 text-xl font-bold mb-2" for="password">
                             Select Image
                         </label>
                         <input class="shadow appearance-none borderrounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline" id="password" type="file" name='image' onChange/>
@@ -101,9 +102,6 @@ function Form() {
                         </button>
                     </div>
                 </form>
-                <p class="text-center text-gray-500 text-xs">
-                    &copy;2020 Acme Corp. All rights reserved.
-                </p>
             </div>
         </>
     )
