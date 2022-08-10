@@ -19,7 +19,7 @@ function Header(props) {
                         <Link to='/categories'><p className='text-white text-2xl hover:underline '>Categories</p></Link>
                     </div>
                     <div className='w-4/12 mt-2 mx-auto'>
-                    <Link to='/form'><button onClick={logout} className="bg-transparent hover:bg-blue-500 text-white font-semibold hover:text-black py-2 px-4 border border-white  rounded-full">LogOut</button></Link>
+                    <Link to='/login'><button onClick={logout} className="bg-transparent hover:bg-blue-500 text-white font-semibold hover:text-black py-2 px-4 border border-white  rounded-full">LogOut</button></Link>
                 
                     </div>
                 </div>
